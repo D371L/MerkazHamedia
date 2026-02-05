@@ -75,4 +75,25 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
+}
+
+    // Scroll Animation (Intersection Observer)
+    const observerOptions = {
+    threshold: 0.1
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target); // Only animate once
+        }
+    });
+}, observerOptions);
+
+// Elements to animate
+document.querySelectorAll('.service-card, .glass-panel, .page-header, .hero-content, section h2, .contact-form-wrapper').forEach(el => {
+    el.classList.add('hidden-fade'); // Add base hidden class
+    observer.observe(el);
+});
 });
