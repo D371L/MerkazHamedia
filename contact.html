@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>צור קשר - מרכז המדיה</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="mobile-toggle">☰</div>
+            <ul class="nav-links">
+                <li><a href="index.html">בית</a></li>
+                <li><a href="services.html">שירותים</a></li>
+                <li><a href="about.html">אודות</a></li>
+                <li><a href="contact.html" class="active">צור קשר</a></li>
+            </ul>
+            <a href="index.html" class="logo rainbow-text">המרכז המדיה של ישראל</a>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <h1 class="rainbow-text">דברו איתנו</h1>
+            <p>אנחנו כאן לכל שאלה, רעיון או פרויקט</p>
+        </div>
+    </div>
+
+    <section class="container contact-container">
+        <div class="glass-panel contact-form-wrapper">
+            <form class="contact-form">
+                <div class="form-group">
+                    <label>שם מלא</label>
+                    <input type="text" placeholder="ישראל ישראלי" required>
+                </div>
+                <div class="form-group">
+                    <label>אימייל</label>
+                    <input type="email" placeholder="example@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label>נושא</label>
+                    <input type="text" placeholder="בנוגע ל..." required>
+                </div>
+                <div class="form-group">
+                    <label>הודעה</label>
+                    <textarea rows="5" placeholder="כתוב את ההודעה שלך כאן..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">שלח הודעה</button>
+            </form>
+        </div>
+
+        <div class="glass-panel contact-info">
+            <h3>פרטי התקשרות</h3>
+            <div class="info-item">
+                <span class="icon">📍</span>
+                <p>הירקון 123, תל אביב</p>
+            </div>
+            <div class="info-item">
+                <span class="icon">📧</span>
+                <p>contact@merkaz-media.co.il</p>
+            </div>
+            <div class="info-item">
+                <span class="icon">📱</span>
+                <p>03-1234567</p>
+            </div>
+
+            <div class="social-links" style="margin-top: 2rem;">
+                <!-- Social Icons placeholders -->
+            </div>
+        </div>
+    </section>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

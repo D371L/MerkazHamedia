@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שירותים - מרכז המדיה</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="mobile-toggle">☰</div>
+            <ul class="nav-links">
+                <li><a href="index.html">בית</a></li>
+                <li><a href="services.html" class="active">שירותים</a></li>
+                <li><a href="about.html">אודות</a></li>
+                <li><a href="contact.html">צור קשר</a></li>
+            </ul>
+            <a href="index.html" class="logo rainbow-text">המרכז המדיה של ישראל</a>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <h1 class="rainbow-text">השירותים שלנו</h1>
+            <p>פתרונות מדיה מתקדמים לכל צורך דיגיטלי</p>
+        </div>
+    </div>
+
+    <!-- Filter & Search -->
+    <section class="filter-section container">
+        <div class="glass-panel filter-container">
+            <input type="text" id="serviceSearch" placeholder="חיפוש שירות...">
+            <div class="categories">
+                <button class="filter-btn active" data-filter="all">הכל</button>
+                <button class="filter-btn" data-filter="video">וידאו</button>
+                <button class="filter-btn" data-filter="audio">סאונד</button>
+                <button class="filter-btn" data-filter="design">עיצוב</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="services-container container">
+        <div class="services-grid" id="servicesGrid">
+            <!-- Services will be populated by JS or static HTML -->
+            <!-- Example Static service for structure -->
+            <article class="service-card glass-panel" data-category="video">
+                <div class="service-icon">🎬</div>
+                <h3>הפקת וידאו</h3>
+                <p>צילום ועריכה ברמה קולנועית לקליפים, פרסומות וסרטי תדמית.</p>
+                <ul class="service-details">
+                    <li>4K Resolution</li>
+                    <li>Color Grading</li>
+                    <li>Visual Effects</li>
+                </ul>
+            </article>
+
+            <article class="service-card glass-panel" data-category="audio">
+                <div class="service-icon">🎧</div>
+                <h3>הקלטות והפקה מוזיקלית</h3>
+                <p>אולפן הקלטות מתקדם להפקת שירים, פודקאסטים וקריינות.</p>
+                <ul class="service-details">
+                    <li>Mix & Mastering</li>
+                    <li>Sound Design</li>
+                    <li>Voice Over</li>
+                </ul>
+            </article>
+
+            <article class="service-card glass-panel" data-category="design">
+                <div class="service-icon">🎨</div>
+                <h3>עיצוב גרפי ומיתוג</h3>
+                <p>בניית שפה ויזואלית ייחודית לעסק שלך, לוגו ועיצוב למדיה חברתית.</p>
+                <ul class="service-details">
+                    <li>Logo Design</li>
+                    <li>Social Media Kit</li>
+                    <li>Brand Identity</li>
+                </ul>
+            </article>
+
+            <article class="service-card glass-panel" data-category="video">
+                <div class="service-icon">📹</div>
+                <h3>שידורים חיים</h3>
+                <p>פתרונות שידור חי מקצועיים לאירועים וכנסים בריבוי מצלמות.</p>
+                <ul class="service-details">
+                    <li>Multi-cam setup</li>
+                    <li>Live Streaming</li>
+                    <li>On-site production</li>
+                </ul>
+            </article>
+
+            <article class="service-card glass-panel" data-category="design">
+                <div class="service-icon">🖥️</div>
+                <h3>בניית אתרים</h3>
+                <p>אתרים מודרניים רספונסיביים עם עיצובים עתידניים.</p>
+                <ul class="service-details">
+                    <li>UX/UI Design</li>
+                    <li>Full Stack Dev</li>
+                    <li>SEO Optimization</li>
+                </ul>
+            </article>
+        </div>
+    </section>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
