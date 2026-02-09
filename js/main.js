@@ -96,4 +96,19 @@ document.querySelectorAll('.service-card, .glass-panel, .page-header, .hero-cont
     el.classList.add('hidden-fade'); // Add base hidden class
     observer.observe(el);
 });
+
+// Page Transition Logic
+document.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', e => {
+        const href = link.getAttribute('href');
+        // Only internal links that are not hash links
+        if (href && !href.startsWith('#') && !href.startsWith('mailto:') && !href.startsWith('tel:')) {
+            e.preventDefault();
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = href;
+            }, 500); // Match CSS transition duration
+        }
+    });
+});
 });

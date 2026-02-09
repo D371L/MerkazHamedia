@@ -24,13 +24,23 @@
 }
 
 body.light-theme {
-    --bg-color: #ffffff;
+    background: #ffffff;
+    /* Fallback */
+    background: radial-gradient(circle at top right, #f0faff, #ffffff);
+    /* Subtle gradient */
     --text-color: #050505;
-    --glass-bg: rgba(0, 0, 0, 0.05);
-    --glass-border: rgba(0, 0, 0, 0.1);
+    --glass-bg: rgba(0, 0, 0, 0.03);
+    /* Lighter glass */
+    --glass-border: rgba(0, 0, 0, 0.08);
 }
 
-/* Light Theme Specific overrides that can't be handled by vars alone */
+/* Base styles for About Page text (Dark Mode Default) */
+.about-text,
+.about-list {
+    color: #ccc;
+}
+
+/* Light Theme Overrides */
 body.light-theme .nav-links a {
     color: #050505;
 }
@@ -39,11 +49,21 @@ body.light-theme .contact-form input,
 body.light-theme .contact-form textarea {
     color: #050505;
     background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
 }
 
 body.light-theme .service-card p,
-body.light-theme .service-details li {
+body.light-theme .service-details li,
+body.light-theme .about-text,
+body.light-theme .about-list {
     color: #333;
+    /* Dark text for readability */
+    font-weight: 500;
+}
+
+body.light-theme .glass-panel {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    /* Softer shadow for light mode */
 }
 
 /* Ensure Logo text is visible (it has generic rainbow class, but the plain text part "Israel" if any needs checking) */
