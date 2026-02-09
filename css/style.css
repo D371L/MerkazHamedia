@@ -25,9 +25,14 @@
 
 body.light-theme {
     background: #ffffff;
-    /* Fallback */
-    background: radial-gradient(circle at top right, #f0faff, #ffffff);
-    /* Subtle gradient */
+    /* Premium "Mesh" Gradient */
+    background-image:
+        radial-gradient(at 0% 0%, rgba(0, 243, 255, 0.03) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(183, 0, 255, 0.03) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(57, 255, 20, 0.03) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, rgba(255, 0, 85, 0.03) 0px, transparent 50%);
+    background-attachment: fixed;
+    /* Parallax-like effect */
     --text-color: #050505;
     --glass-bg: rgba(0, 0, 0, 0.03);
     /* Lighter glass */
@@ -62,8 +67,42 @@ body.light-theme .about-list {
 }
 
 body.light-theme .glass-panel {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     /* Softer shadow for light mode */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    /* Slight border for definition */
+}
+
+/* Light Theme: Fix Filter Buttons */
+body.light-theme .filter-btn {
+    color: #555;
+    border-color: rgba(0, 0, 0, 0.15);
+}
+
+body.light-theme .filter-btn:hover,
+body.light-theme .filter-btn.active {
+    color: #fff;
+    /* Keeps white text on active/hover */
+}
+
+/* Light Theme: Fix Service Cards */
+body.light-theme .service-card {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    background: linear-gradient(145deg, #ffffff, #f5f7fa);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.03);
+}
+
+body.light-theme .service-card:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Light Theme: Stronger Text */
+body.light-theme h1,
+body.light-theme h2,
+body.light-theme h3 {
+    color: #000;
+    text-shadow: none;
+    /* Remove glow if it hurts readability, or keep subtle */
 }
 
 /* Ensure Logo text is visible (it has generic rainbow class, but the plain text part "Israel" if any needs checking) */
@@ -178,14 +217,29 @@ ul {
 }
 
 @keyframes slideDown {
-    from {
-        transform: translateY(-100%);
+    0% {
+        transform: translateY(-20px);
+        /* Subtle slide instead of full slide */
         opacity: 0;
     }
 
-    to {
+    100% {
         transform: translateY(0);
         opacity: 1;
+    }
+}
+
+@keyframes blurFadeIn {
+    0% {
+        opacity: 0;
+        filter: blur(20px);
+        transform: scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        filter: blur(0);
+        transform: scale(1);
     }
 }
 
@@ -215,43 +269,24 @@ ul {
     animation-delay: 500ms;
 }
 
-/* Navbar Animation (Homepage Only) */
+/* Navbar Animation (Homepage Only) - Blur Fade Concept */
 .home-page .navbar {
-    animation: slideDown 0.8s ease-out forwards;
-}
-
-.home-page .nav-links li {
     opacity: 0;
-    /* Star hidden */
-    animation: fadeInUp 0.5s ease-out forwards;
-}
-
-.nav-links li:nth-child(1) {
+    animation: blurFadeIn 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
     animation-delay: 0.2s;
+    /* Slight initial pause */
 }
 
-.nav-links li:nth-child(2) {
-    animation-delay: 0.3s;
+/* Ensure links are visible inside the navbar animation */
+.home-page .nav-links li {
+    opacity: 1;
+    animation: none;
+    /* Disable individual link animations */
 }
 
-.nav-links li:nth-child(3) {
-    animation-delay: 0.4s;
-}
-
-.nav-links li:nth-child(4) {
-    animation-delay: 0.5s;
-}
-
-.delay-1 {
-    animation-delay: 0.2s;
-}
-
-.delay-2 {
-    animation-delay: 0.4s;
-}
-
-.delay-3 {
-    animation-delay: 0.6s;
+/* Remove Staggered Delays for Home Page to prevent "one by one" effect */
+.home-page .nav-links li:nth-child(n) {
+    animation-delay: 0s;
 }
 
 /* Glassmorphism */
@@ -266,7 +301,7 @@ ul {
 
 /* Navigation */
 .navbar {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -284,14 +319,15 @@ ul {
 
 .nav-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    /* Centered Menu */
     align-items: center;
+    width: 100%;
 }
 
 .logo {
-    font-size: 1.8rem;
-    font-weight: 900;
-    letter-spacing: 1px;
+    display: none;
+    /* Keep logo hidden as requested */
 }
 
 .nav-links {
@@ -301,11 +337,21 @@ ul {
 
 .nav-links a {
     font-size: 1.2rem;
-    /* Slightly larger */
     font-weight: 800;
-    /* Much bolder */
     letter-spacing: 0.5px;
     position: relative;
+    color: #fff;
+    background: none;
+    -webkit-background-clip: border-box;
+    background-clip: border-box;
+    filter: none;
+    text-shadow: none;
+    transition: 0.3s ease;
+}
+
+.nav-links a:hover {
+    transform: none;
+    filter: none;
     color: #fff;
 }
 
@@ -316,9 +362,9 @@ ul {
     left: 0;
     width: 0;
     height: 3px;
-    /* thicker underline */
     background: var(--rainbow-gradient);
     transition: 0.3s ease;
+    display: block;
 }
 
 .nav-links a:hover::after,
@@ -418,11 +464,37 @@ ul {
 @media (max-width: 768px) {
     .nav-links {
         display: none;
-        /* Mobile menu to be implemented */
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(5, 5, 5, 0.95);
+        /* Dark theme default */
+        backdrop-filter: blur(10px);
+        padding: 2rem;
+        text-align: center;
+        border-bottom: 1px solid var(--glass-border);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Mobile Menu Active State */
+    .nav-links.active {
+        display: flex;
+        animation: slideDown 0.3s ease-out forwards;
     }
 
     .mobile-toggle {
         display: block;
+        font-size: 2rem;
+        color: var(--text-color);
+    }
+
+    /* Light Theme Mobile Menu */
+    body.light-theme .nav-links {
+        background: rgba(255, 255, 255, 0.95);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     }
 
     .hero-title {
@@ -449,13 +521,14 @@ ul {
 
 /* Page Headers */
 .page-header {
-    padding: 8rem 0 4rem;
     text-align: center;
+    padding: 6rem 0 3rem;
 }
 
 .page-header h1 {
     font-size: 3.5rem;
     margin-bottom: 1rem;
+    font-weight: 900;
 }
 
 .page-header p {
@@ -664,4 +737,14 @@ ul {
     .contact-container {
         grid-template-columns: 1fr;
     }
+}
+
+/* Page Transitions */
+body {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+body.fade-out {
+    opacity: 0;
 }

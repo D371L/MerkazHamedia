@@ -1,14 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Page Entrance Animation
+    setTimeout(() => {
+        document.body.classList.remove('fade-out');
+    }, 50); // Small delay to ensure transition triggers
+
     // Navbar Scroll Effect
     const navbar = document.querySelector('.navbar');
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
+    // Navbar Scroll Effect Removed per user request
 
     // Mobile Menu Toggle (Basic implementation, needs CSS support)
     const mobileToggle = document.querySelector('.mobile-toggle');
@@ -16,17 +15,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (mobileToggle) {
         mobileToggle.addEventListener('click', () => {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-            if (navLinks.style.display === 'flex') {
-                navLinks.style.flexDirection = 'column';
-                navLinks.style.position = 'absolute';
-                navLinks.style.top = '100%';
-                navLinks.style.left = '0';
-                navLinks.style.width = '100%';
-                navLinks.style.background = 'rgba(5,5,5,0.95)';
-                navLinks.style.padding = '2rem';
-                navLinks.style.textAlign = 'center';
-            }
+            mobileToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+
+                // Optional: Animate toggle icon
+                if (navLinks.classList.contains('active')) {
+                    mobileToggle.innerText = '✕'; // Close icon
+                } else {
+                    mobileToggle.innerText = '☰'; // Menu icon
+                }
+            });
         });
     }
 
@@ -74,41 +72,41 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
+
     }
-}
 
     // Scroll Animation (Intersection Observer)
     const observerOptions = {
-    threshold: 0.1
-};
+        threshold: 0.1
+    };
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target); // Only animate once
-        }
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target); // Only animate once
+            }
+        });
+    }, observerOptions);
+
+    // Elements to animate
+    document.querySelectorAll('.service-card, .glass-panel, .page-header, .hero-content, section h2, .contact-form-wrapper').forEach(el => {
+        el.classList.add('hidden-fade'); // Add base hidden class
+        observer.observe(el);
     });
-}, observerOptions);
 
-// Elements to animate
-document.querySelectorAll('.service-card, .glass-panel, .page-header, .hero-content, section h2, .contact-form-wrapper').forEach(el => {
-    el.classList.add('hidden-fade'); // Add base hidden class
-    observer.observe(el);
-});
-
-// Page Transition Logic
-document.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', e => {
-        const href = link.getAttribute('href');
-        // Only internal links that are not hash links
-        if (href && !href.startsWith('#') && !href.startsWith('mailto:') && !href.startsWith('tel:')) {
-            e.preventDefault();
-            document.body.classList.add('fade-out');
-            setTimeout(() => {
-                window.location.href = href;
-            }, 500); // Match CSS transition duration
-        }
+    // Page Transition Logic
+    document.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', e => {
+            const href = link.getAttribute('href');
+            // Only internal links that are not hash links
+            if (href && !href.startsWith('#') && !href.startsWith('mailto:') && !href.startsWith('tel:')) {
+                e.preventDefault();
+                document.body.classList.add('fade-out');
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 500); // Match CSS transition duration
+            }
+        });
     });
-});
 });
